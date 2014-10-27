@@ -31,6 +31,29 @@ And add it to your project reference.
 For more detailed information, look here [Referencing a library project](http://developer.android.com/tools/projects/projects-eclipse.html#ReferencingLibraryProject).
 
 
+### Gradle build
+
+To install the sample application to your device run the following task:
+
+```
+$ ./gradlew installDebug
+```
+
+To deploy the library to your local Maven repository run the following task:
+
+```
+$ ./gradlew install
+```
+
+Then, to use the library in your project add the following to your `build.gradle`:
+
+```groovy
+dependencies {
+    compile 'com.hollowsoft.library:slidingdrawer:1.3.4'
+}
+```
+
+
 Example
 -------
 
