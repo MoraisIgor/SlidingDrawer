@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:drawer="http://schemas.android.com/apk/res-auto"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
@@ -7,14 +7,16 @@
     <hollowsoft.slidingdrawer.SlidingDrawer
         android:id="@+id/vertical_drawer_activity_sliding_drawer_vertical_drawer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
         drawer:content="@+id/vertical_drawer_activity_text_view_content"
         drawer:handle="@+id/vertical_drawer_activity_text_view_handle">
 
         <TextView
             android:id="@id/vertical_drawer_activity_text_view_handle"
             android:layout_width="match_parent"
-            android:layout_height="75dp"
+            android:padding="25dp"
+            android:layout_height="wrap_content"
             android:background="#01579B"
             android:gravity="center"
             android:text="@string/handle"/>
@@ -23,10 +25,11 @@
             android:id="@+id/vertical_drawer_activity_text_view_content"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:padding="25dp"
             android:background="@color/cyan"
             android:gravity="center"
             android:text="@string/content"/>
 
     </hollowsoft.slidingdrawer.SlidingDrawer>
 
-</LinearLayout>
+</FrameLayout>

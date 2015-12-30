@@ -266,23 +266,29 @@ public class SlidingDrawer extends ViewGroup {
             throw new RuntimeException("The SlidingDrawer cannot have unspecified dimensions.");
         }
 
-        measureChild(viewHandle, widthMeasureSpec, heightMeasureSpec);
+        this.measureChildren(widthMeasureSpec, heightMeasureSpec);
 
         if (vertical) {
 
             final int height = heightSpecSize - viewHandle.getMeasuredHeight() - topOffset;
 
-            viewContent.measure(MeasureSpec.makeMeasureSpec(widthSpecSize, MeasureSpec.EXACTLY),
-                                MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY));
+            viewContent.measure(MeasureSpec.makeMeasureSpec(widthSpecSize, widthSpecMode),
+                                MeasureSpec.makeMeasureSpec(height, heightSpecMode));
+
+            this.setMeasuredDimension(Math.max(viewContent.getMeasuredWidth(), viewHandle.getMeasuredWidth()),
+                    viewContent.getMeasuredHeight() + viewHandle.getMeasuredHeight());
         } else {
 
             final int width = widthSpecSize - viewHandle.getMeasuredWidth() - topOffset;
 
-            viewContent.measure(MeasureSpec.makeMeasureSpec(width, MeasureSpec.EXACTLY),
-                                MeasureSpec.makeMeasureSpec(heightSpecSize, MeasureSpec.EXACTLY));
+            viewContent.measure(MeasureSpec.makeMeasureSpec(width, widthSpecMode),
+                                MeasureSpec.makeMeasureSpec(heightSpecSize, heightSpecMode));
+
+            this.setMeasuredDimension(viewContent.getMeasuredWidth() + viewHandle.getMeasuredWidth(),
+                    Math.max(viewContent.getMeasuredHeight(),viewHandle.getMeasuredHeight()));
         }
 
-        setMeasuredDimension(widthSpecSize, heightSpecSize);
+
     }
 
     @Override
@@ -293,37 +299,42 @@ public class SlidingDrawer extends ViewGroup {
             final int width = right - left;
             final int height = bottom - top;
 
-            int childLeft;
-            int childTop;
+            int handleLeft;
+            int handleTop;
 
-            int childWidth = viewHandle.getMeasuredWidth();
-            int childHeight = viewHandle.getMeasuredHeight();
+            int handleWidth = viewHandle.getMeasuredWidth();
+            int handleHeight = viewHandle.getMeasuredHeight();
 
             if (vertical) {
 
-                childLeft = (width - childWidth) / 2;
-                childTop = expanded ? topOffset : height - childHeight + bottomOffset;
+                handleLeft = 0;
+                handleTop = expanded ? topOffset : height - handleHeight + bottomOffset;
 
                 viewContent.layout(0,
-                                   topOffset + childHeight,
-                                   viewContent.getMeasuredWidth(),
-                                   topOffset + childHeight + viewContent.getMeasuredHeight());
+                                   topOffset + handleHeight,
+                                   Math.max(viewContent.getMeasuredWidth(), handleWidth),
+                                   topOffset + handleHeight + viewContent.getMeasuredHeight());
+
+                handleWidth = Math.max(handleWidth, viewContent.getMeasuredWidth());
+
 
             } else {
 
-                childLeft = expanded ? topOffset : width - childWidth + bottomOffset;
-                childTop = (height - childHeight) / 2;
+                handleLeft = expanded ? topOffset : width - handleWidth + bottomOffset;
+                handleTop = 0;
 
-                viewContent.layout(topOffset + childWidth,
+                viewContent.layout(topOffset + handleWidth,
                                    0,
-                                   topOffset + childWidth + viewContent.getMeasuredWidth(),
-                                   viewContent.getMeasuredHeight());
+                                   topOffset + handleWidth + viewContent.getMeasuredWidth(),
+                                   Math.max(viewContent.getMeasuredHeight(), handleHeight));
+
+                handleHeight = Math.max(handleHeight, viewContent.getMeasuredHeight());
             }
 
-            viewHandle.layout(childLeft, childTop, childLeft + childWidth, childTop + childHeight);
+            viewHandle.layout(handleLeft, handleTop, handleLeft + handleWidth, handleTop + handleHeight);
 
-            handleWidth = viewHandle.getWidth();
-            handleHeight = viewHandle.getHeight();
+            this.handleWidth = viewHandle.getWidth();
+            this.handleHeight = viewHandle.getHeight();
         }
     }
 
