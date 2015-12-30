@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Users/jmc/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.0.1/support-annotations-23.0.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="1fce89a6428c51467090d7f424e4c9c3dbd55f7e">
+        <dex dex="/Users/jmc/Dev Projects/Android/SlidingDrawer/app/build/intermediates/pre-dexed/debug/support-annotations-23.0.1-98e94216fc1d62c36280c6c8ac9aea250e3b8510.jar" />
+    </item>
+    <item
+        jar="/Users/jmc/Dev Projects/Android/SlidingDrawer/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/22.2.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="5b37cf49773f7f17aca9830efd3053b0cac56728">
+        <dex dex="/Users/jmc/Dev Projects/Android/SlidingDrawer/app/build/intermediates/pre-dexed/debug/classes-a039c0236bb5037ebf021cebdc6a015adebcef04.jar" />
+    </item>
+    <item
+        jar="/Users/jmc/Dev Projects/Android/SlidingDrawer/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/jars/libs/internal_impl-22.2.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="57f2ab85c164ff1676ec64dee787981c046fab79">
+        <dex dex="/Users/jmc/Dev Projects/Android/SlidingDrawer/app/build/intermediates/pre-dexed/debug/internal_impl-22.2.0-e69118edc1aed8dc02c3455e548ed3b6cd32096c.jar" />
+    </item>
+    <item
+        jar="/Users/jmc/Dev Projects/Android/SlidingDrawer/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="73753982da6bde518f3a4c6b372749981d14d1a0">
+        <dex dex="/Users/jmc/Dev Projects/Android/SlidingDrawer/app/build/intermediates/pre-dexed/debug/classes-9d459df44afce57df5bac101efc41b33aeaa73c7.jar" />
+    </item>
+    <item
+        jar="/Users/jmc/Dev Projects/Android/SlidingDrawer/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="1ee588ff2c4daf7b97c1cbf922a6c7f027285c2f">
+        <dex dex="/Users/jmc/Dev Projects/Android/SlidingDrawer/app/build/intermediates/pre-dexed/debug/classes-d77a451b212b5d79b0b0d4d32d7bc0d97833f438.jar" />
+    </item>
+    <item
+        jar="/Users/jmc/Dev Projects/Android/SlidingDrawer/app/build/intermediates/exploded-aar/com.github.moraisigor/slidingdrawer/1.5.5/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="70ab220e1a30f7cb5345417df53a0d25b39187d6">
+        <dex dex="/Users/jmc/Dev Projects/Android/SlidingDrawer/app/build/intermediates/pre-dexed/debug/classes-b092925cfdd797c1f65ced1060c3f06814ed7120.jar" />
+    </item>
+
+</items>
