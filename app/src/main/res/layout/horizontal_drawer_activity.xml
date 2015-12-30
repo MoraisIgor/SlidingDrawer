@@ -7,7 +7,7 @@
 
     <hollowsoft.slidingdrawer.SlidingDrawer
         android:id="@+id/horizontal_drawer_activity_sliding_drawer_horizontal_drawer"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:orientation="horizontal"
         drawer:content="@+id/horizontal_drawer_activity_text_view_content"
@@ -15,7 +15,7 @@
 
         <TextView
             android:id="@+id/horizontal_drawer_activity_text_view_content"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:background="@color/primary_dark"
             android:gravity="center"
@@ -23,7 +23,8 @@
 
         <TextView
             android:id="@+id/horizontal_drawer_activity_text_view_handle"
-            android:layout_width="75dp"
+            android:layout_width="wrap_content"
+            android:padding="5dp"
             android:layout_height="match_parent"
             android:background="@color/primary"
             android:gravity="center"
