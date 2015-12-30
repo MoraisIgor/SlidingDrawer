@@ -21,10 +21,37 @@ package hollowsoft.slidingdrawer;
  *
  * @author Igor Morais
  */
-public interface OnDrawerCloseListener {
+public interface SlidingDrawerListener {
+
+    /**
+     * Invoked when the user starts dragging the drawer handle.
+     */
+    void onScrollStarted();
+
+    /**
+     * Invoked when the user stops dragging the drawer handle.
+     */
+    void onScrollEnded();
+
+
+    /**
+     * Invoked when the drawer becomes fully open.
+     */
+    void onDrawerOpened();
+
+    /**
+     * Invoked just before the drawer starts opening.
+     */
+    void onDrawerWillOpen();
 
     /**
      * Invoked when the drawer becomes fully closed.
      */
     void onDrawerClosed();
+
+
+    /**
+     * Invoked just before the drawer start closing.
+     */
+    void onDrawerWilClose();
 }

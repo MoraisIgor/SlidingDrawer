@@ -136,9 +136,7 @@ public class SlidingDrawer extends ViewGroup {
     private View viewHandle;
     private View viewContent;
 
-    private OnDrawerOpenListener onDrawerOpenListener;
-    private OnDrawerCloseListener onDrawerCloseListener;
-    private OnDrawerScrollListener onDrawerScrollListener;
+    private SlidingDrawerListener slidingDrawerListener;
 
     private final SlidingHandler handler = new SlidingHandler();
 
@@ -400,8 +398,14 @@ public class SlidingDrawer extends ViewGroup {
 
             prepareContent();
 
-            if (onDrawerScrollListener != null) {
-                onDrawerScrollListener.onScrollStarted();
+            if (slidingDrawerListener != null) {
+                slidingDrawerListener.onScrollStarted();
+
+                if (this.expanded) {
+                    slidingDrawerListener.onDrawerWilClose();
+                } else {
+                    slidingDrawerListener.onDrawerWillOpen();
+                }
             }
 
             if (vertical) {
@@ -576,8 +580,8 @@ public class SlidingDrawer extends ViewGroup {
 
         tracking = false;
 
-        if (onDrawerScrollListener != null) {
-            onDrawerScrollListener.onScrollEnded();
+        if (slidingDrawerListener != null) {
+            slidingDrawerListener.onScrollEnded();
         }
 
         if (velocityTracker != null) {
@@ -740,8 +744,8 @@ public class SlidingDrawer extends ViewGroup {
         if (!expanded) {
             expanded = true;
 
-            if (onDrawerOpenListener != null) {
-                onDrawerOpenListener.onDrawerOpened();
+            if (slidingDrawerListener != null) {
+                slidingDrawerListener.onDrawerOpened();
             }
         }
     }
@@ -755,8 +759,8 @@ public class SlidingDrawer extends ViewGroup {
         if (expanded) {
             expanded = false;
 
-            if (onDrawerCloseListener != null) {
-                onDrawerCloseListener.onDrawerClosed();
+            if (slidingDrawerListener != null) {
+                slidingDrawerListener.onDrawerClosed();
             }
         }
     }
@@ -936,16 +940,17 @@ public class SlidingDrawer extends ViewGroup {
     public void animateOpen() {
         prepareContent();
 
-        if (onDrawerScrollListener != null) {
-            onDrawerScrollListener.onScrollStarted();
+        if (slidingDrawerListener != null) {
+            slidingDrawerListener.onScrollStarted();
+            slidingDrawerListener.onDrawerWillOpen();
         }
 
         animateOpen(vertical ? viewHandle.getTop() : viewHandle.getLeft());
 
         sendAccessibilityEvent(AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED);
 
-        if (onDrawerScrollListener != null) {
-            onDrawerScrollListener.onScrollEnded();
+        if (slidingDrawerListener != null) {
+            slidingDrawerListener.onScrollEnded();
         }
     }
 
@@ -961,14 +966,16 @@ public class SlidingDrawer extends ViewGroup {
     public void animateClose() {
         prepareContent();
 
-        if (onDrawerScrollListener != null) {
-            onDrawerScrollListener.onScrollStarted();
+        if (slidingDrawerListener != null) {
+            slidingDrawerListener.onScrollStarted();
+            slidingDrawerListener.onDrawerWilClose();
+
         }
 
         animateClose(vertical ? viewHandle.getTop() : viewHandle.getLeft());
 
-        if (onDrawerScrollListener != null) {
-            onDrawerScrollListener.onScrollEnded();
+        if (slidingDrawerListener != null) {
+            slidingDrawerListener.onScrollEnded();
         }
     }
 
@@ -1048,33 +1055,16 @@ public class SlidingDrawer extends ViewGroup {
         return viewContent;
     }
 
-    /**
-     * Sets the listener that receives a notification when the drawer becomes open.
-     *
-     * @param onDrawerOpenListener The listener to be notified when the drawer is opened.
-     */
-    public final void setOnDrawerOpenListener(OnDrawerOpenListener onDrawerOpenListener) {
-        this.onDrawerOpenListener = onDrawerOpenListener;
-    }
 
     /**
-     * Sets the listener that receives a notification when the drawer becomes close.
+     * Sets the listener that receives notifications when the drawer operates.
      *
-     * @param onDrawerCloseListener The listener to be notified when the drawer is closed.
+     * @param slidingDrawerListener The listener to be notified when the drawer operates.
      */
-    public final void setOnDrawerCloseListener(OnDrawerCloseListener onDrawerCloseListener) {
-        this.onDrawerCloseListener = onDrawerCloseListener;
+    public final void setSlidingDrawerListener(SlidingDrawerListener slidingDrawerListener) {
+        this.slidingDrawerListener = slidingDrawerListener;
     }
 
-    /**
-     * <p> Sets the listener that receives a notification when the drawer starts or ends a scroll. </p>
-     * <p> A fling is considered as a scroll. A fling will also trigger a drawer opened or drawer closed event. </p>
-     *
-     * @param onDrawerScrollListener The listener to be notified when scrolling starts or stops.
-     */
-    public final void setOnDrawerScrollListener(OnDrawerScrollListener onDrawerScrollListener) {
-        this.onDrawerScrollListener = onDrawerScrollListener;
-    }
 
     private class DrawerToggler implements OnClickListener {
 

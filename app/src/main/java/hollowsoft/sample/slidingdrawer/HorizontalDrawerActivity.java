@@ -2,14 +2,11 @@ package hollowsoft.sample.slidingdrawer;
 
 import android.os.Bundle;
 
-import hollowsoft.slidingdrawer.OnDrawerCloseListener;
-import hollowsoft.slidingdrawer.OnDrawerOpenListener;
-import hollowsoft.slidingdrawer.OnDrawerScrollListener;
 import hollowsoft.slidingdrawer.SlidingDrawer;
+import hollowsoft.slidingdrawer.SlidingDrawerListener;
 
-public class HorizontalDrawerActivity extends BaseAppCompatActivity implements OnDrawerOpenListener,
-                                                                               OnDrawerCloseListener,
-                                                                               OnDrawerScrollListener {
+public class HorizontalDrawerActivity extends BaseAppCompatActivity implements
+        SlidingDrawerListener {
 
     private static final String TAG = HorizontalDrawerActivity.class.getSimpleName();
 
@@ -21,9 +18,7 @@ public class HorizontalDrawerActivity extends BaseAppCompatActivity implements O
 
         final SlidingDrawer drawer = (SlidingDrawer) findViewById(R.id.horizontal_drawer_activity_sliding_drawer_horizontal_drawer);
 
-        drawer.setOnDrawerOpenListener(this);
-        drawer.setOnDrawerCloseListener(this);
-        drawer.setOnDrawerScrollListener(this);
+        drawer.setSlidingDrawerListener(this);
     }
 
     @Override
@@ -32,8 +27,18 @@ public class HorizontalDrawerActivity extends BaseAppCompatActivity implements O
     }
 
     @Override
+    public void onDrawerWillOpen() {
+        Logger.logInfo(TAG, "Drawer will open");
+    }
+
+    @Override
     public void onDrawerClosed() {
         Logger.logInfo(TAG, "Drawer Closed");
+    }
+
+    @Override
+    public void onDrawerWilClose() {
+        Logger.logInfo(TAG, "Drawer will close");
     }
 
     @Override
