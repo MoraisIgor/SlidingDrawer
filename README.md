@@ -66,9 +66,10 @@ Example
 </LinearLayout>
 ```
 
-Set the width (or height) of the SlidingDrawer to wrap_content if you want it to deploy only as necessary to show the content (vs. completely up or left).
+Set the width (or height) of the SlidingDrawer to `wrap_content` if you want it to deploy only as necessary to show the content (vs. completely up or left).
 
-If you want the handle to change while depending on the drawer status (moving, closed, open)
+If you want the handle to change while depending on the drawer status (moving, closed, open), use a state drawable.
+The state of the handle view is set to `activated` while the drawer moves and to `selected` when the slider if fully opened.
 
 
 ##### In Code
@@ -126,7 +127,7 @@ public class DrawerActivity extends Activity implements SlidingDrawerListener {
 Contact
 -------
 
-* [My Awesome Site](http://igormorais.com) :)
+* [Igor Morais](http://igormorais.com) :)
 * [Iron Bird Software](http://www.ironbirdsoftware.com)
 
 
