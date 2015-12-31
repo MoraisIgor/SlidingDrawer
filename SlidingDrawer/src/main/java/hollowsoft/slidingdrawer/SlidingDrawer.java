@@ -78,6 +78,10 @@ import android.view.accessibility.AccessibilityNodeInfo;
  */
 public class SlidingDrawer extends ViewGroup {
 
+    private static final String TAG = SlidingDrawer.class.getSimpleName();
+
+    private static final float SLIDE_TRACKING_THRESHOLD = 10.0f;
+
     private static final int TAP_THRESHOLD = 6;
     private static final float MAX_TAP_VELOCITY = 100.0f;
     private static final float MAX_MINOR_VELOCITY = 150.0f;
@@ -112,6 +116,9 @@ public class SlidingDrawer extends ViewGroup {
 
     private final Rect rectFrame = new Rect();
     private final Rect rectInvalidate = new Rect();
+
+    private float xMotionOrigin = Float.MIN_VALUE;
+    private float yMotionOrigin = Float.MIN_VALUE;
 
     private boolean tracking;
     private boolean animating;
@@ -379,10 +386,10 @@ public class SlidingDrawer extends ViewGroup {
             return false;
         }
 
-        final int action = event.getAction();
-
         final float x = event.getX();
         final float y = event.getY();
+
+        final int action = event.getAction();
 
         viewHandle.getHitRect(rectFrame);
 
@@ -390,45 +397,73 @@ public class SlidingDrawer extends ViewGroup {
             return false;
         }
 
-        if (action == MotionEvent.ACTION_DOWN) {
 
-            tracking = true;
+        switch (action) {
 
-            viewHandle.setPressed(true);
+            case MotionEvent.ACTION_DOWN:
 
-            prepareContent();
+                xMotionOrigin = x;
+                yMotionOrigin = y;
 
-            if (slidingDrawerListener != null) {
-                slidingDrawerListener.onScrollStarted();
 
-                if (this.expanded) {
-                    slidingDrawerListener.onDrawerWilClose();
-                } else {
-                    slidingDrawerListener.onDrawerWillOpen();
+            case MotionEvent.ACTION_MOVE:
+
+                float motionDistance = (float) Math.sqrt(Math.pow(x - xMotionOrigin, 2) + Math.pow(y - yMotionOrigin, 2));
+
+                // The user moved, but if it is just a bit we do not want to start tracking yet (or we would miss a "press" event)
+                if (motionDistance > SLIDE_TRACKING_THRESHOLD) {
+
+                    tracking = true;
+
+                    viewHandle.setPressed(true);
+
+                    prepareContent();
+
+                    if (slidingDrawerListener != null) {
+                        slidingDrawerListener.onScrollStarted();
+
+                        if (this.expanded) {
+                            slidingDrawerListener.onDrawerWilClose();
+                        } else {
+                            slidingDrawerListener.onDrawerWillOpen();
+                        }
+                    }
+
+                    if (vertical) {
+
+                        final int top = viewHandle.getTop();
+
+                        touchDelta = (int) y - top;
+
+                        prepareTracking(top);
+
+                    } else {
+
+                        final int left = viewHandle.getLeft();
+
+                        touchDelta = (int) x - left;
+
+                        prepareTracking(left);
+                    }
+
+                    velocityTracker.addMovement(event);
+
+                    return true;
+
                 }
-            }
 
-            if (vertical) {
+                break;
 
-                final int top = viewHandle.getTop();
+            case MotionEvent.ACTION_UP:
 
-                touchDelta = (int) y - top;
+                xMotionOrigin = 0;
+                yMotionOrigin = 0;
 
-                prepareTracking(top);
+                break;
 
-            } else {
-
-                final int left = viewHandle.getLeft();
-
-                touchDelta = (int) x - left;
-
-                prepareTracking(left);
-            }
-
-            velocityTracker.addMovement(event);
         }
 
-        return true;
+        return false;
     }
 
     @Override
@@ -1071,7 +1106,7 @@ public class SlidingDrawer extends ViewGroup {
         @Override
         public void onClick(final View view) {
 
-            if (locked) {
+            if (!locked) {
 
                 if (animateOnClick) {
                     animateToggle();
