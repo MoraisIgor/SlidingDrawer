@@ -2,17 +2,26 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:drawer="http://schemas.android.com/apk/res-auto"
               android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="@color/primary_light">
+              android:layout_height="match_parent">
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/wrap_content"
+        android:id="@+id/wrap_content_switch"
+        android:layout_gravity="left|top"
+        android:layout_margin="10dp"
+        android:switchPadding="15dp"/>
 
     <hollowsoft.slidingdrawer.SlidingDrawer
-        android:id="@+id/horizontal_drawer_activity_sliding_drawer_horizontal_drawer"
+        android:id="@+id/drawer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
         drawer:content="@+id/horizontal_drawer_activity_text_view_content"
         drawer:handle="@+id/horizontal_drawer_activity_text_view_handle"
-        android:layout_gravity="right">
+        android:layout_gravity="right"
+        >
 
         <TextView
             android:id="@+id/horizontal_drawer_activity_text_view_content"

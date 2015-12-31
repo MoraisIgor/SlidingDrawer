@@ -4,29 +4,38 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
-    <hollowsoft.slidingdrawer.SlidingDrawer
-        android:id="@+id/vertical_drawer_activity_sliding_drawer_vertical_drawer"
-        android:layout_width="match_parent"
+    <Switch
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="@string/wrap_content"
+        android:id="@+id/wrap_content_switch"
+        android:layout_gravity="left|top"
+        android:layout_margin="10dp"
+        android:switchPadding="15dp"/>
+
+    <hollowsoft.slidingdrawer.SlidingDrawer
+        android:id="@+id/drawer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_gravity="bottom"
-        drawer:content="@+id/vertical_drawer_activity_text_view_content"
-        drawer:handle="@+id/vertical_drawer_activity_text_view_handle">
+        drawer:content="@+id/content"
+        drawer:handle="@+id/handle">
 
         <TextView
-            android:id="@id/vertical_drawer_activity_text_view_handle"
+            android:id="@+id/handle"
             android:layout_width="match_parent"
-            android:padding="25dp"
+            android:padding="15dp"
             android:layout_height="wrap_content"
-            android:background="#01579B"
+            android:background="@color/primary"
             android:gravity="center"
             android:text="@string/handle"/>
 
         <TextView
-            android:id="@+id/vertical_drawer_activity_text_view_content"
+            android:id="@+id/content"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="25dp"
-            android:background="@color/cyan"
+            android:padding="50dp"
+            android:background="@color/primary_dark"
             android:gravity="center"
             android:text="@string/content"/>
 

@@ -1,53 +1,40 @@
 package hollowsoft.sample.slidingdrawer;
 
-import android.os.Bundle;
+
+import android.view.ViewGroup;
 
 import hollowsoft.slidingdrawer.SlidingDrawer;
-import hollowsoft.slidingdrawer.SlidingDrawerListener;
 
-public class HorizontalDrawerActivity extends BaseAppCompatActivity implements
-        SlidingDrawerListener {
+public class HorizontalDrawerActivity extends DrawerActivity {
 
-    private static final String TAG = HorizontalDrawerActivity.class.getSimpleName();
 
     @Override
-    protected void onCreate(final Bundle bundle) {
-        super.onCreate(bundle);
-
-        setContentView(R.layout.horizontal_drawer_activity);
-
-        final SlidingDrawer drawer = (SlidingDrawer) findViewById(R.id.horizontal_drawer_activity_sliding_drawer_horizontal_drawer);
-
-        drawer.setSlidingDrawerListener(this);
+    public int getLayoutResourceId() {
+        return R.layout.horizontal_drawer_activity;
     }
 
-    @Override
-    public void onDrawerOpened() {
-        Logger.logInfo(TAG, "Drawer Opened");
-    }
 
     @Override
-    public void onDrawerWillOpen() {
-        Logger.logInfo(TAG, "Drawer will open");
-    }
+    public void toggleDrawerWrapContent() {
 
-    @Override
-    public void onDrawerClosed() {
-        Logger.logInfo(TAG, "Drawer Closed");
-    }
+        final SlidingDrawer drawer = (SlidingDrawer) findViewById(R.id.drawer);
 
-    @Override
-    public void onDrawerWilClose() {
-        Logger.logInfo(TAG, "Drawer will close");
-    }
+        if (drawer != null) {
 
-    @Override
-    public void onScrollStarted() {
-        Logger.logInfo(TAG, "Scroll Started");
-    }
+            if (drawer.isOpened() || drawer.isMoving()) {
+                drawer.close();
+            }
 
-    @Override
-    public void onScrollEnded() {
-        Logger.logInfo(TAG, "Scroll Ended");
+            ViewGroup.LayoutParams layoutParams = drawer.getLayoutParams();
+
+            if (layoutParams.width == ViewGroup.LayoutParams.WRAP_CONTENT) {
+                layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT;
+            } else {
+                layoutParams.width = ViewGroup.LayoutParams.WRAP_CONTENT;
+            }
+
+            drawer.setLayoutParams(layoutParams);
+
+        }
     }
 }
