@@ -415,7 +415,9 @@ public class SlidingDrawer extends ViewGroup {
 
                     tracking = true;
 
-                    viewHandle.setPressed(true);
+                    viewHandle.setActivated(true);
+                    viewHandle.setSelected(false);
+
 
                     prepareContent();
 
@@ -611,7 +613,7 @@ public class SlidingDrawer extends ViewGroup {
 
     private void stopTracking() {
 
-        viewHandle.setPressed(false);
+        viewHandle.setActivated(false);
 
         tracking = false;
 
@@ -776,6 +778,9 @@ public class SlidingDrawer extends ViewGroup {
 
         viewContent.setVisibility(View.VISIBLE);
 
+        viewHandle.setActivated(false);
+        viewHandle.setSelected(true);
+
         if (!expanded) {
             expanded = true;
 
@@ -790,6 +795,9 @@ public class SlidingDrawer extends ViewGroup {
 
         viewContent.setVisibility(View.GONE);
         viewContent.destroyDrawingCache();
+
+        viewHandle.setActivated(false);
+        viewHandle.setSelected(false);
 
         if (expanded) {
             expanded = false;

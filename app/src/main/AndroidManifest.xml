@@ -22,10 +22,14 @@
             android:name=".VerticalDrawerActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity" />
-            <!-- android:theme="@style/Theme.ActionBar.Overlay />" -->
 
         <activity
             android:name=".HorizontalDrawerActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity"/>
+
+        <activity
+            android:name=".MimicIosDrawerActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity"/>
 

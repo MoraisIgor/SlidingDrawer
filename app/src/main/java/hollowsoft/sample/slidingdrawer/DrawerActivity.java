@@ -40,7 +40,7 @@ public abstract class DrawerActivity extends BaseAppCompatActivity implements Sl
 
     @Override
     public void onDrawerOpened() {
-        Logger.logInfo(TAG, "Drawer Opened");
+        Logger.logInfo(TAG, "Drawer is opened");
     }
 
     @Override
@@ -50,7 +50,7 @@ public abstract class DrawerActivity extends BaseAppCompatActivity implements Sl
 
     @Override
     public void onDrawerClosed() {
-        Logger.logInfo(TAG, "Drawer Closed");
+        Logger.logInfo(TAG, "Drawer is closed");
     }
 
     @Override

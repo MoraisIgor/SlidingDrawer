@@ -8,6 +8,7 @@ public enum Menu {
 
     VERTICAL_DRAWER     (1, R.string.vertical_drawer_activity, R.drawable.ic_launcher, VerticalDrawerActivity.class),
     HORIZONTAL_DRAWER   (2, R.string.horizontal_drawer_activity, R.drawable.ic_launcher, HorizontalDrawerActivity.class),
+    MIMIC_IOS_DRAWER    (3, R.string.mimic_ios_drawer_activity, R.drawable.ic_launcher, MimicIosDrawerActivity.class),
     ABOUT               (5, R.string.about_activity, R.drawable.ic_launcher, AboutActivity.class);
 
     private final int id;

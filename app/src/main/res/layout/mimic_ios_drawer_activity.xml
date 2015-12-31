@@ -4,42 +4,34 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
-    <Switch
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/wrap_content"
-        android:id="@+id/wrap_content_switch"
-        android:layout_gravity="left|top"
-        android:layout_margin="10dp"
-        android:switchPadding="15dp"/>
-
     <hollowsoft.slidingdrawer.SlidingDrawer
-        android:id="@+id/drawer"
-        android:layout_width="match_parent"
+        android:id="@+id/horizontal_drawer"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:orientation="horizontal"
         drawer:content="@+id/content"
         drawer:handle="@+id/handle"
         android:layout_gravity="right"
-        >
+        android:clickable="false"
+        android:focusable="false">
 
         <TextView
             android:id="@+id/content"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:padding="20dp"
+            android:padding="40dp"
             android:background="@color/primary_dark"
             android:gravity="center"
             android:text="@string/content"/>
 
-        <TextView
+        <ImageView
             android:id="@+id/handle"
             android:layout_width="wrap_content"
-            android:padding="5dp"
             android:layout_height="match_parent"
-            android:background="@color/primary"
-            android:gravity="center"
-            android:text="@string/handle"/>
+            android:clickable="false"
+            android:focusable="false"
+            android:src="@drawable/horizontal_handle"
+            android:paddingLeft="10dp"/>
 
     </hollowsoft.slidingdrawer.SlidingDrawer>
 

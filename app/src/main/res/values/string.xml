@@ -8,7 +8,7 @@
 
     <string name="vertical_drawer_activity">Vertical</string>
     <string name="horizontal_drawer_activity">Horizontal</string>
-    <string name="mimicing_ios_activity">Mimicing iOS drawers</string>
+    <string name="mimic_ios_drawer_activity">Mimic iOS drawer</string>
     <string name="about_activity">About</string>
 
     <string name="wrap_content">Wrap content</string>
