@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Sliding Drawer</string>
+
+    <string name="handle">Handle</string>
+    <string name="content">Content</string>
+
+    <string name="vertical_drawer_activity">Vertical</string>
+    <string name="horizontal_drawer_activity">Horizontal</string>
+    <string name="mimic_ios_drawer_activity">Mimic iOS drawer</string>
+    <string name="about_activity">About</string>
+
+    <string name="wrap_content">Wrap content</string>
+
+
+</resources>

@@ -1,7 +1,7 @@
-![1] SlidingDrawer
-==================
+![1] EnhancedSlidingDrawer
+==========================
 
-[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-SlidingDrawer-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/765)
+This is a fork from [Igor Morais SlidingDrawer project](https://github.com/MoraisIgor/SlidingDrawer).
 
 SlidingDrawer hides content out of the screen and allows the user to drag a handle to bring the content on screen. SlidingDrawer can be used vertically or horizontally.
 
@@ -11,7 +11,7 @@ SlidingDrawer should be used as an overlay inside layouts. This means SlidingDra
 
 The size of the SlidingDrawer defines how much space the content will occupy once slid out so SlidingDrawer should usually use `match_parent` for both its dimensions.
 
-[See](http://developer.android.com/reference/android/widget/SlidingDrawer.html) :)
+Have a look at the example application, it shows examples of vertical and horizontal sliding drawers as well as an attempt to mimic the iOS drawers.
 
 
 Setup
@@ -25,7 +25,6 @@ dependencies {
     compile 'com.github.moraisigor:slidingdrawer:1.5.5'
 }
 ```
-
 
 Example
 -------
@@ -67,12 +66,16 @@ Example
 </LinearLayout>
 ```
 
+Set the width (or height) of the SlidingDrawer to `wrap_content` if you want it to deploy only as necessary to show the content (vs. completely up or left).
+
+If you want the handle to change while depending on the drawer status (moving, closed, open), use a state drawable.
+The state of the handle view is set to `activated` while the drawer moves and to `selected` when the slider if fully opened.
+
+
 ##### In Code
 
 ```java
-public class DrawerActivity extends Activity implements OnDrawerOpenListener,
-                                                        OnDrawerCloseListener,
-                                                        OnDrawerScrollListener {
+public class DrawerActivity extends Activity implements SlidingDrawerListener {
                                                 
     private static final String TAG = "DrawerActivity";
     
@@ -84,55 +87,55 @@ public class DrawerActivity extends Activity implements OnDrawerOpenListener,
         
         final SlidingDrawer drawer = (SlidingDrawer) view.findViewById(R.id.drawer);
         
-        drawer.setOnDrawerOpenListener(this);
-        drawer.setOnDrawerCloseListener(this);
-        drawer.setOnDrawerScrollListener(this);
+        drawer.setSlidingDrawerListener(this);
     }
     
     @Override
     public void onDrawerOpened() {
-        Log.i(TAG, "Drawer Opened");
+        Logger.logInfo(TAG, "Drawer is opened");
     }
-    
+
+    @Override
+    public void onDrawerWillOpen() {
+        Logger.logInfo(TAG, "Drawer will open");
+    }
+
     @Override
     public void onDrawerClosed() {
-        Log.i(TAG, "Drawer Closed");
+        Logger.logInfo(TAG, "Drawer is closed");
     }
-    
+
+    @Override
+    public void onDrawerWilClose() {
+        Logger.logInfo(TAG, "Drawer will close");
+    }
+
     @Override
     public void onScrollStarted() {
-        Log.i(TAG, "Scroll Started");
+        Logger.logInfo(TAG, "Scroll Started");
     }
-    
+
     @Override
     public void onScrollEnded() {
-        Log.i(TAG, "Scroll Ended");
+        Logger.logInfo(TAG, "Scroll Ended");
     }
 }
 ```
 
 
-Thanks
-------
-
-Awesome tools for code quality improvement:
-
-* [Lint](http://developer.android.com/tools/help/lint.html)
-* [CheckStyle](http://checkstyle.sourceforge.net)
-* [FindBugs](http://findbugs.sourceforge.net)
-* [PMD](http://pmd.sourceforge.net)
-
 
 Contact
 -------
 
-* [My Awesome Site](http://igormorais.com) :)
+* [Igor Morais](http://igormorais.com) :)
+* [Iron Bird Software](http://www.ironbirdsoftware.com)
 
 
 License
 -------
 
 ```
+Copyright (C) 2016 IronBird Software - Jean-Michel Cazaux
 Copyright 2014 Igor Morais
 Copyright (C) 2008 The Android Open Source Project
     

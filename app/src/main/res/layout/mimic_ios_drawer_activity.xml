@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:drawer="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+             android:background="@color/primary_light">
+
+    <hollowsoft.slidingdrawer.SlidingDrawer
+        android:id="@+id/horizontal_drawer"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        drawer:content="@+id/content"
+        drawer:handle="@+id/handle"
+        android:layout_gravity="right"
+        android:clickable="false"
+        android:focusable="false">
+
+        <GridLayout
+            android:id="@+id/content"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:padding="15dp"
+            android:background="@color/primary_dark"
+            android:gravity="center"
+            android:text="@string/content">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Button 1"
+                android:layout_row="0"
+                android:layout_column="0"
+                android:layout_margin="5dp"
+                android:textColor="@color/primary_dark"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Button 2"
+                android:layout_row="1"
+                android:layout_column="0"
+                android:layout_margin="5dp"
+                android:textColor="@color/primary_dark"/>
+        </GridLayout>
+
+
+        <ImageView
+            android:id="@+id/handle"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:clickable="false"
+            android:focusable="false"
+            android:src="@drawable/horizontal_handle"
+            android:paddingLeft="10dp"/>
+
+    </hollowsoft.slidingdrawer.SlidingDrawer>
+
+</FrameLayout>

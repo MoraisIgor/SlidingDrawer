@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.Main" parent="Theme.AppCompat.Light">
+        <item name="colorPrimary">@color/primary_light</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+
+        <item name="actionBarTheme">@style/Theme.ActionBar</item>
+        <item name="actionBarStyle">@style/Theme.Style.ActionBar</item>
+        <item name="drawerArrowStyle">@style/Theme.DrawerArrow</item>
+
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="Theme.ActionBar" parent="ThemeOverlay.AppCompat.ActionBar">
+        <item name="colorControlNormal">@color/primary_dark</item>
+    </style>
+
+    <style name="Theme.Style.ActionBar" parent="Widget.AppCompat.Light.ActionBar.Solid">
+        <item name="background">@android:color/transparent</item>
+        <item name="titleTextStyle">@style/Theme.ActionBar.Text</item>
+    </style>
+
+    <style name="Theme.ActionBar.Text" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/primary_dark</item>
+    </style>
+
+    <style name="Theme.DrawerArrow" parent="Widget.AppCompat.DrawerArrowToggle">
+        <item name="color">@color/primary_dark</item>
+    </style>
+
+    <style name="Theme.ActionBar.Overlay" parent="Theme.Main">
+        <item name="windowActionBarOverlay">true</item>
+
+        <item name="actionBarStyle">@style/Theme.Style.ActionBar.Overlay</item>
+    </style>
+
+    <style name="Theme.Style.ActionBar.Overlay" parent="Theme.Style.ActionBar">
+        <item name="background">@android:color/transparent</item>
+    </style>
+
+</resources>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="SlidingDrawer">
+        <attr name="animateOnClick" format="boolean" />
+        <attr name="allowSingleTap" format="boolean" />
+        <attr name="android:orientation" />
+        <attr name="handle" format="reference" />
+        <attr name="content" format="reference" />
+    </declare-styleable>
+
+</resources>
