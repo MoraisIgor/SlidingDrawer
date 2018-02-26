@@ -1069,7 +1069,7 @@ public class SlidingDrawer extends ViewGroup {
         @Override
         public void onClick(final View view) {
 
-            if (locked) {
+            if (!locked) {
 
                 if (animateOnClick) {
                     animateToggle();
