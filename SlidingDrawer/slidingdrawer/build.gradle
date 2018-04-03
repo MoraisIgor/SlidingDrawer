@@ -7,7 +7,7 @@ plugins {
 apply plugin: 'com.android.library'
 
 group = 'com.github.moraisigor'
-version = '1.6.7'
+version = '1.6.8'
 
 android {
 
@@ -135,5 +135,14 @@ bintray {
         issueTrackerUrl = 'https://github.com/MoraisIgor/SlidingDrawer/issues'
 
         vcsUrl = 'https://github.com/MoraisIgor/SlidingDrawer.git'
+
+        version {
+
+            gpg {
+
+                sign = true
+                passphrase = p.getProperty('bintray.password')
+            }
+        }
     }
 }
