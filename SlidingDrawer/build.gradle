@@ -9,7 +9,7 @@ buildscript {
 
     dependencies {
 
-        classpath 'com.android.tools.build:gradle:3.0.1'
+        classpath 'com.android.tools.build:gradle:3.1.1'
     }
 }
 
@@ -30,5 +30,5 @@ task clean(type: Delete) {
 
 ext {
 
-    supportVersion = '27.0.2'
+    supportVersion = '27.1.1'
 }
