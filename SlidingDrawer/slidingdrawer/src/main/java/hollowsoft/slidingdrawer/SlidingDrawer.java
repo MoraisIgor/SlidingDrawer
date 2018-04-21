@@ -77,11 +77,12 @@ import android.view.accessibility.AccessibilityNodeInfo;
 public class SlidingDrawer extends ViewGroup {
 
     private static final int TAP_THRESHOLD = 6;
+    private static final int VELOCITY_UNITS = 1000;
+
     private static final float MAX_TAP_VELOCITY = 100.0f;
     private static final float MAX_MINOR_VELOCITY = 150.0f;
     private static final float MAX_MAJOR_VELOCITY = 200.0f;
     private static final float MAX_ACCELERATION = 2000.0f;
-    private static final int VELOCITY_UNITS = 1000;
 
     private static final int ANIMATION_FRAME_DURATION = 1000 / 60;
 
@@ -91,11 +92,12 @@ public class SlidingDrawer extends ViewGroup {
     private static final int ORIENTATION_VERTICAL = 1;
 
     private int tapThreshold;
+    private int velocityUnits;
+
     private int maxTapVelocity;
     private int maxMinorVelocity;
     private int maxMajorVelocity;
     private int maxAcceleration;
-    private int velocityUnits;
 
     private float animationAcceleration;
     private float animationVelocity;
@@ -215,11 +217,12 @@ public class SlidingDrawer extends ViewGroup {
         final float density = getResources().getDisplayMetrics().density;
 
         tapThreshold = (int) (TAP_THRESHOLD * density + 0.5f);
+        velocityUnits = (int) (VELOCITY_UNITS * density + 0.5f);
+
         maxTapVelocity = (int) (MAX_TAP_VELOCITY * density + 0.5f);
         maxMinorVelocity = (int) (MAX_MINOR_VELOCITY * density + 0.5f);
         maxMajorVelocity = (int) (MAX_MAJOR_VELOCITY * density + 0.5f);
         maxAcceleration = (int) (MAX_ACCELERATION * density + 0.5f);
-        velocityUnits = (int) (VELOCITY_UNITS * density + 0.5f);
     }
 
     @Override
@@ -1032,7 +1035,7 @@ public class SlidingDrawer extends ViewGroup {
      *
      * @param onDrawerOpenListener The listener to be notified when the drawer is opened.
      */
-    public final void setOnDrawerOpenListener(OnDrawerOpenListener onDrawerOpenListener) {
+    public final void setOnDrawerOpenListener(final OnDrawerOpenListener onDrawerOpenListener) {
         this.onDrawerOpenListener = onDrawerOpenListener;
     }
 
@@ -1041,7 +1044,7 @@ public class SlidingDrawer extends ViewGroup {
      *
      * @param onDrawerCloseListener The listener to be notified when the drawer is closed.
      */
-    public final void setOnDrawerCloseListener(OnDrawerCloseListener onDrawerCloseListener) {
+    public final void setOnDrawerCloseListener(final OnDrawerCloseListener onDrawerCloseListener) {
         this.onDrawerCloseListener = onDrawerCloseListener;
     }
 
@@ -1051,7 +1054,7 @@ public class SlidingDrawer extends ViewGroup {
      *
      * @param onDrawerScrollListener The listener to be notified when scrolling starts or stops.
      */
-    public final void setOnDrawerScrollListener(OnDrawerScrollListener onDrawerScrollListener) {
+    public final void setOnDrawerScrollListener(final OnDrawerScrollListener onDrawerScrollListener) {
         this.onDrawerScrollListener = onDrawerScrollListener;
     }
 
@@ -1075,6 +1078,7 @@ public class SlidingDrawer extends ViewGroup {
                     animateToggle();
 
                 } else {
+
                     toggle();
                 }
             }
