@@ -18,7 +18,7 @@ The size of the SlidingDrawer defines how much space the content will occupy onc
 ```
 dependencies {
 
-    implementation 'com.github.moraisigor:slidingdrawer:1.6.7'
+    implementation 'com.github.moraisigor:slidingdrawer:1.7.0'
 }
 ```
 
