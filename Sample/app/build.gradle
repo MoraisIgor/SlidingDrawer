@@ -30,5 +30,5 @@ dependencies {
     implementation "com.android.support:appcompat-v7:${rootProject.ext.supportVersion}"
 
     // Widget
-    implementation 'com.github.moraisigor:slidingdrawer:1.6.7'
+    implementation 'com.github.moraisigor:slidingdrawer:1.7.0'
 }
